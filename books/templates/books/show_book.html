@@ -1,0 +1,26 @@
+{% extends 'books/base.html' %}
+{% block content %}
+
+<h1>{{book.title}}</h1>
+<h1>{{book.photo}}</h1>
+
+<div>
+    <img src="{{book.photo}}" alt="">
+    <form method="POST" action="{% url 'book-review' book.id %}">
+        {% csrf_token %}
+        <textarea name="review" id="" rows="5" placeholder="Write your review here"></textarea>
+        <button
+        type="Submit"
+        class="button"
+        Submit
+        ></button>
+    </form>
+</div>
+<div class="review">
+    {% for review in reviews %}
+        <h3>{{review.body}}</h3> <p>Time published {{review.post_time_created}}</p> 
+        <hr>
+    {% endfor %}
+</div> 
+
+{% endblock %}
