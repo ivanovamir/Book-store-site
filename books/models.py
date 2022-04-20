@@ -1,7 +1,7 @@
 from email.policy import default
 from django.db import models
 from django.forms import CharField
-
+from django.urls import reverse
 # Create your models here.
 
 class Book(models.Model):
@@ -15,7 +15,13 @@ class Book(models.Model):
     def __str__(self):
         return f"{self.title}, {self.pageCount}"
 
+    def get_absolute_url(self):
+        return reverse ('show_book', kwargs ={'pk': self.pk})
+
 class Review(models.Model):
     book_id = models.IntegerField()
     body = models.TextField()
     post_time_created = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.id
