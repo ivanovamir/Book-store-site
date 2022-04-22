@@ -1,7 +1,15 @@
-{% extends 'base.html' %}
-{ block content }
-<div class="main-logo">
-    <img src="{% static 'images/logo.svg' %}" alt="Sorry">
-</div>
+{% load static %}
 
-{ endblock  }
+<header>
+    <a href="{% url 'book' %}">
+        <img class="logo" src="{% static 'books/images/logo.png' %}" width="50"  alt="">
+    </a>
+    <nav>
+        <ul class="nav__links">
+            <li><a href="#">All genres</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+    <a class="cta" href="#"><button>Contact</button></a>
+</header>

@@ -4,7 +4,7 @@
 <div class="">
     {% csrf_token %}
     {% for book in books %}
-    <a href="{{ book.get_absolute_url }}" target="_blank">
+    <a href="{{ book.get_absolute_url }}">
         <p>{{book.title}}</p>
     </a>
     <img src="{{book.photo}}" width="300" alt="Sorry, there was a photo of book">

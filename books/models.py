@@ -1,4 +1,5 @@
 from email.policy import default
+from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.forms import CharField
 from django.urls import reverse
@@ -11,6 +12,7 @@ class Book(models.Model):
     description = models.TextField(null=True)
     photo = models.ImageField(null=True, upload_to = "images/%Y/%m/%d/")
     is_published = models.BooleanField(default=True)
+    cat = models.ForeignKey('Category', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"{self.title}, {self.pageCount}"
@@ -25,3 +27,9 @@ class Review(models.Model):
 
     def __str__(self):
         return self.id
+
+class Category(models.Model):
+    name = models.CharField(max_length = 50, db_index=True)
+
+    def __str__(self):
+        return self.name
