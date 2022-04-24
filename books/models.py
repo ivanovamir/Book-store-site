@@ -10,7 +10,7 @@ class Book(models.Model):
     author = models.CharField(max_length=50, null=True)
     pageCount = models.IntegerField(null=True)
     description = models.TextField(null=True)
-    photo = models.ImageField(null=True, upload_to = "images/%Y/%m/%d/")
+    photo = models.ImageField(null=True, upload_to = "images/%Y/%m/%d/", default='books/default_book.png')
     is_published = models.BooleanField(default=True)
     cat = models.ForeignKey('Category', on_delete=models.CASCADE, null=True)
 
