@@ -7,7 +7,12 @@
     <a href="{{ book.get_absolute_url }}">
         <p>{{book.title}}</p>
     </a>
-    {{book.photo}}
+    
+    {% endfor %}
+</div>
+<div class="cat">
+    {% for c in cat %}
+        <li><a href="{{c.get_absolute_url}}">{{c.name}}</a></li>
     {% endfor %}
 </div>
 

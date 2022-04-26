@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="cat">
+    {% for cat in category_list %}
+    <a href="">
+        <h1>{{cat.name}}</h1>
+    <br>
+    </a>
+    {% endfor %}
+</div>
+    
+{% endblock %}
