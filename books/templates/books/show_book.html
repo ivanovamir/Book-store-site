@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
+
 {% block content %}
+
 
 <h1>{{book.title}}</h1>
 <h1>{{book.photo}}</h1>
+<h1>{{book.photo}}</h1>
 
-<div>
-    <img src="{{book.photo}}" alt="">
+
+<br>
+<div class="form-floating">
     <form method="POST" action="{% url 'book-review' book.id %}">
         {% csrf_token %}
-        <textarea name="review" id="" rows="5" placeholder="Write your review here"></textarea>
-        <button
-        type="Submit"
-        class="button"
-        Submit
-        ></button>
+        <textarea style="width: 800px"  name="review" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+        <br>
+        <button type="Submit" class="btn btn-outline-primary">Submit</button>
     </form>
-</div>
+  </div>
+<br>
+
 
 <div class="review">
     {% for review in reviews %}

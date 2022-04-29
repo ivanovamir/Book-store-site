@@ -3,7 +3,6 @@ from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.forms import CharField
 from django.urls import reverse
-# Create your models here.
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
@@ -27,6 +26,9 @@ class Review(models.Model):
 
     def __str__(self):
         return self.id
+
+    def get_absolute_url(self):
+        return reverse ('book-review', kwargs ={'pk': self.book_id})
 
 class Category(models.Model):
     name = models.CharField(max_length = 50, db_index=True)
