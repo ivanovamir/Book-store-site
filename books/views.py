@@ -22,6 +22,10 @@ def index(request): #same
 # class BookDetailView(DetailView):
 #     model = Book
 #     template_name = 'books/show_book.html'
+def all_category(request):
+    cat = Category.objects.all()
+    context = {'cat':cat}
+    return render (request, 'books/all_category.html', context)
 
 def show_category(request, cat_id): #same
     books = Book.objects.filter(cat_id=cat_id)
@@ -36,7 +40,7 @@ def show_book(request, pk):
 
     ####
     
-    context = {'book' : single_book, 'reviews':reviews}
+    context = {'single_book' : single_book, 'reviews':reviews}
     return render (request, 'books/show_book.html', context)
 
 def review(request, pk): 

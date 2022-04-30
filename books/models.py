@@ -9,7 +9,7 @@ class Book(models.Model):
     author = models.CharField(max_length=50, null=True)
     pageCount = models.IntegerField(null=True)
     description = models.TextField(null=True)
-    photo = models.ImageField(null=True, upload_to = "images/%Y/%m/%d/", default='books/default_book.png')
+    photo = models.ImageField(null=True, upload_to = "books/%Y/%m/%d/", default='books/default_book.png')
     is_published = models.BooleanField(default=True)
     cat = models.ForeignKey('Category', on_delete=models.CASCADE, null=True)
 
@@ -18,6 +18,13 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse ('show_book', kwargs ={'pk': self.pk})
+
+    class Meta:
+        verbose_name = 'list of books'
+        # verbose_name_plural = 
+        ordering = ['title', 'id']
+
+
 
 class Review(models.Model):
     book_id = models.IntegerField()
@@ -30,11 +37,21 @@ class Review(models.Model):
     def get_absolute_url(self):
         return reverse ('book-review', kwargs ={'pk': self.book_id})
 
+    class Meta:
+        verbose_name = 'list of reviews'
+        ordering = ['post_time_created']
+
+
 class Category(models.Model):
     name = models.CharField(max_length = 50, db_index=True)
+    photo = models.ImageField(null=True, upload_to = "books/%Y/%m/%d/", default='books/default_book.png')
 
     def __str__(self):
         return self.name
     
     def get_absolute_url(self):
         return reverse ('category', kwargs ={'cat_id': self.pk})
+
+    class Meta:
+        verbose_name = 'list of categories'
+        ordering = ['id']

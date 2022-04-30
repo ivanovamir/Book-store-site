@@ -2,29 +2,46 @@
 
 {% block content %}
 
-
-<h1>{{book.title}}</h1>
-<h1>{{book.photo}}</h1>
-<h1>{{book.photo}}</h1>
-
-
-<br>
-<div class="form-floating">
-    <form method="POST" action="{% url 'book-review' book.id %}">
-        {% csrf_token %}
-        <textarea style="width: 800px"  name="review" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-        <br>
-        <button type="Submit" class="btn btn-outline-primary">Submit</button>
-    </form>
-  </div>
-<br>
-
-
-<div class="review">
-    {% for review in reviews %}
-        <h3>{{review.body}}</h3> <p>Time published {{review.post_time_created}}</p> 
-        <hr>
-    {% endfor %}
+<div class="container">
+    <div class="row ">
+        <div class="col gy-5">
+            {% if single_book.photo %}
+            <img src="{{single_book.photo.url}}" class="rounded float-start" alt="Sorry, we will add photo later :c" width="400">
+            {% endif %}
+        </div>
+        <div class="col gy-5">
+            <p class="fs-1">{{single_book.title}}</з>
+            <p class="fs-5">{{single_book.description}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col gy-5">
+            <p class="fs-3">Author - {{single_book.author}}</p>
+            <p class="fs-5">Page count - {{single_book.pageCount}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col gy-5">
+            <div class="form-floating">
+                <form method="POST" action="{% url 'book-review' single_book.id %}">
+                    {% csrf_token %}
+                    <textarea style="width: 500px"  name="review" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <br>
+                    <button type="Submit" class="btn btn-outline-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col gy-5">
+            <div class="review">
+                <p class="fs-1">Review's:</p>
+                {% for review in reviews %}
+                    <h3>{{review.body}}</h3> <p>Time published {{review.post_time_created}}</p> 
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div> 
 
 {% endblock %}

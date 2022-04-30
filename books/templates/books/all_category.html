@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% for c in cat %}
+
+<div class="container">
+    <div class="row ">
+        <div class="col gy-5">
+            <a href="{{c.get_absolute_url}}">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{c.photo.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="">{{c.name}}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
