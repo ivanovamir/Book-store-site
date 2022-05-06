@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load books_tags %}
 
 {% block content %}
 
-
-{% for c in cat %}
+{% get_categories as categories %}
+{% for c in categories %}
 
 <div class="container">
     <div class="row ">

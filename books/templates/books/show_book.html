@@ -23,9 +23,9 @@
     <div class="row">
         <div class="col gy-5">
             <div class="form-floating">
-                <form method="POST" action="{% url 'book-review' single_book.id %}">
+                <form method="POST" action="{% url 'book-review' single_book.cat_id %}">
                     {% csrf_token %}
-                    <textarea style="width: 500px"  name="review" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <textarea style="width: 500px" name="review" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
                     <br>
                     <button type="Submit" class="btn btn-outline-primary">Submit</button>
                 </form>

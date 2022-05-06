@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-
+{% load books_tags %}
+{% get_categories as categories %}
 {% block content %}
 
-
 <div class="list_book">
+    <h1>{{cat_name}}</h1>
     {% for book in books %}
     <ul>
-        <li><a href="{% url 'show_book' book.pk %}">{{book.title}}</a></li>
+        <li><a href="{{book.get_absolute_url}}">{{book.title}}</a></li>
     </ul>
-    
 
     {% endfor %}
 
