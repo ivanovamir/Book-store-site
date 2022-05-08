@@ -6,7 +6,7 @@
     <div class="row ">
         <div class="col gy-5">
             {% if single_book.photo %}
-            <img src="{{single_book.photo.url}}" class="rounded float-start" alt="Sorry, we will add photo later :c" width="400">
+            <img src="{{single_book.photo.url}}" class="rounded-start rounded-end border border-4" alt="Sorry, we will add photo later :c" width="400">
             {% endif %}
         </div>
         <div class="col gy-5">
@@ -23,7 +23,8 @@
     <div class="row">
         <div class="col gy-5">
             <div class="form-floating">
-                <form method="POST" action="{% url 'book-review' single_book.cat_id %}">
+                <!-- <form method="post" action="{% url 'book-review' single_book.slug %}">  -->
+                <form method="post" action="{% url 'book-review' single_book.slug %}"> 
                     {% csrf_token %}
                     <textarea style="width: 500px" name="review" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
                     <br>
@@ -37,7 +38,9 @@
             <div class="review">
                 <p class="fs-1">Review's:</p>
                 {% for review in reviews %}
-                    <h3>{{review.body}}</h3> <p>Time published {{review.post_time_created}}</p> 
+                    <h5>{{review.body}}</h5> <p>Time published {{review.post_time_created}}</p> 
+                {% empty %}
+                    <h3>No comments yet</h3>
                 {% endfor %}
             </div>
         </div>

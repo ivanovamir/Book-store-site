@@ -38,8 +38,9 @@ class Review(models.Model):
     def __str__(self):
         return self.id
 
+    #change
     def get_absolute_url(self): 
-        return reverse ('book-review', kwargs ={'pk': self.book})
+        return reverse ('book-review', kwargs ={'slug_book': self.book})
 
     class Meta:
         verbose_name = 'list of reviews'

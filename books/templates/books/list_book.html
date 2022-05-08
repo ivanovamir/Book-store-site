@@ -3,16 +3,20 @@
 {% get_categories as categories %}
 {% block content %}
 
-<div class="list_book">
-    <h1>{{cat_name}}</h1>
-    {% for book in books %}
-    <ul>
-        <li><a href="{{book.get_absolute_url}}">{{book.title}}</a></li>
-    </ul>
+<h1>{{cat_name}}</h1>
 
-    {% endfor %}
+{% for book in books %}
 
+<div class="card" style="width: 18rem;">
+    <img src="{{book.photo.url}}" class="card-img-top" alt="">
+    <div class="card-body">
+      <h5 class="card-title">{{book.title}}</h5>
+      <p class="card-text">{{ book.description| truncatewords:15 }}</p>
+      <a href="{{book.get_absolute_url}}" class="btn btn-primary">Detailed ...</a>
+    </div>
 </div>
+    
+{% endfor %}
 
 
 {% endblock %}
